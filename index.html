@@ -1,0 +1,709 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CasaBlanca FreshBakery</title>
+    <style>
+        /* Estilo General */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fefaf5; /* Blanco cálido */
+            color: #5b3b28; /* Terracota oscuro */
+            scroll-behavior: smooth;
+        }
+
+        /* Encabezado */
+        header {
+            background-image: url('https://imag.bonviveur.com/cinnamon-rolls.jpg'); /* Imagen de fondo */
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4); /* Superposición oscura */
+            z-index: 0;
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin: 0;
+            z-index: 1;
+        }
+
+        header p {
+            font-size: 1.5rem;
+            margin: 20px 0;
+            z-index: 1;
+            font-style: italic;
+        }
+
+        .btn-primary {
+            padding: 15px 40px;
+            background-color: #d9a66c;
+            color: white;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #c0885a;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Navegación */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background-color: white;
+            padding: 10px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #5b3b28;
+            font-weight: bold;
+            margin: 0 20px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #d9a66c;
+        }
+
+        /* Secciones */
+        section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .container h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: #d9a66c;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .container h2::after {
+            content: "";
+            width: 80px;
+            height: 3px;
+            background: #d9a66c;
+            display: block;
+            margin: 20px auto;
+        }
+
+        .container p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #5b3b28;
+        }
+
+        /* Recuadros elegantes para las secciones */
+        .card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 30px auto;
+            max-width: 900px;
+            text-align: left;
+            border: 2px solid #d9a66c; /* Borde dorado */
+        }
+
+        .card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #d9a66c;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            font-size: 1.2rem;
+            color: #5b3b28;
+            line-height: 1.6;
+        }
+
+        /* Galería */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .gallery img {
+            width: 350px; /* Tamaño grande pero equilibrado */
+            height: 230px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            background-color: #f5e3d3;
+            color: #5b3b28;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            margin-top: 60px;
+        }
+
+        footer a {
+            color: #d9a66c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsividad */
+        @media (max-width: 768px) {
+            .container h2 {
+                font-size: 2.5rem;
+            }
+
+            .gallery img {
+                width: 100%;
+                height: auto;
+            }
+
+            nav {
+                flex-direction: column;
+            }
+
+            nav a {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hero Section -->
+<header>
+    <h1>CasaBlanca.</h1>
+<h2 style="font-size: 2rem; color: #ffffff; font-family: 'Playfair Display', serif; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);">FreshBakery</h2>
+
+    <p>Pastelería artesanal que celebra tus momentos especiales</p>
+    <a href="#nosotros" class="btn-primary">Conócenos</a>
+</header>
+
+<!-- Navegación -->
+<nav>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#mision">Misión</a>
+    <a href="#vision">Visión</a>
+    <a href="#galeria">Galería</a>
+    <a href="#contacto">Contáctanos</a>
+</nav>
+
+
+<!-- Nosotros -->
+<section id="nosotros">
+    <div class="container">
+        <h2>Nosotros</h2>
+        <div class="card">
+            <p>CasaBlanca Bakery nació en 2024 como un proyecto familiar en Acapulco, creado con la intención de llevar a cada mesa una experiencia dulce y memorable. Nuestros pasteles son el resultado de pasión, tradición e ingredientes de alta calidad.</p>
+        </div>
+    </div>
+</section>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Postres</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 50px auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ba5833;
+            padding: 20px;
+        }
+
+        /* Estilo de la galería usando Flexbox para que las imágenes estén alineadas en una fila */
+        .gallery {
+            display: flex;
+            justify-content: space-between; /* Asegura que las imágenes estén espaciadas uniformemente */
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            width: 23%; /* Define el ancho de cada imagen */
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .item-description {
+            padding: 15px;
+        }
+
+        .item-description h3 {
+            font-size: 1.2rem;
+            color: #ba5833;
+            margin-bottom: 10px;
+        }
+
+        .item-description p {
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #d9a66c;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Galería de Postres</h1>
+
+    <div class="container">
+        <!-- Galería de postres en una sola fila -->
+        <div class="gallery">
+            <!-- Postre 1 -->
+            <div class="gallery-item">
+                <img src="cookie.jpg" alt="Galletas de Chocolate">
+                <div class="item-description">
+                    <h3>Galletas de Chocolate</h3>
+                    <p>Deliciosas galletas de chocolate con helado de vainilla, perfectas para acompañar tu café.</p>
+                    <p class="price">$120 MXN</p>
+                </div>
+            </div>
+
+            <!-- Postre 2 -->
+            <div class="gallery-item">
+                <img src="pin.jpg" alt="Cupcakes de vainilla">
+                <div class="item-description">
+                    <h3>Cupcakes de vainilla</h3>
+                    <p>Suaves, esponjosos y deliciosos. ¡La perfección en cada bocado! .</p>
+                    <p class="price">$80 MXN</p>
+                </div>
+            </div>
+
+            <!-- Postre 3 -->
+            <div class="gallery-item">
+                <img src="las.jpg" alt="Tarta de frutos rojos">
+                <div class="item-description">
+                    <h3>Tarta de frutos rojos</h3>
+                    <p>Relleno cremoso y base crujiente. ¡El toque perfecto para cualquier ocasión!.</p>
+                    <p class="price">$150 MXN</p>
+                </div>
+            </div>
+
+            <!-- Postre 4 -->
+            <div class="gallery-item">
+                <img src="ll.jpg" alt="Cheesecake de fresa">
+                <div class="item-description">
+                    <h3>Cheesecake de fresa</h3>
+                    <p>Cremoso y suave, con un toque fresco de fresa que lo hace irresistible. ¡El postre perfecto para endulzar tu día!.</p>
+                    <p class="price">$90 MXN</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
+
+
+<!-- Visión -->
+<section id="vision">
+    <div class="container">
+        <h2>Visión</h2>
+        <div class="card">
+            <p>Queremos ser líderes en el arte de la repostería, reconocidos por la calidad de nuestros productos y el impacto positivo en nuestra comunidad. Buscamos innovar mientras honramos la tradición.</p></div>
+    </div>
+</section>
+
+<!-- Misión -->
+<section id="mision">
+    <div class="container">
+        <h2>Misión</h2>
+        <div class="card">
+            <p>Nos dedicamos a crear momentos inolvidables, a través de nuestros dulces postres, hechos con ingredientes de calidad y amor.</p></div>
+    </div>
+</section>
+
+
+
+<!-- Galería -->
+<section id="galeria">
+    <div class="container">
+        <h2>Galería</h2>
+        <div class="gallery">
+            <img src="https://imag.bonviveur.com/cinnamon-rolls.jpg" alt="Roles de Canela">
+            <img src="https://www.azucardominomex.com/sites/azucardominomex_com/files/styles/m/public/2022-09/600x336_PASTEL-DE-CHOCOLATE-BRUCE.jpg.webp" alt="Pastel de Chocolate">
+            <img src="https://i.pinimg.com/736x/5f/54/6e/5f546ea25c59a9eade80ed13897ab0a8.jpg" alt="Pastel Decorado">
+        </div>
+    </div>
+</section>
+
+<!-- Contacto -->
+<section id="contacto">
+    <div class="container">
+        <h2>Contáctanos</h2>
+        <div class="card">
+            <p><strong>Dirección:</strong> Av. Principal 123, Acapulco, Guerrero, México</p>
+            <p><strong>Teléfono:</strong> +52 744 587 8320</p>
+            <p><strong>Email:</strong> <a href="mailto:casablancabakery@gmail.com.mx">casablancabakery@gmail.com.mx</a></p>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
+
+
+    
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrusel de Imágenes</title>
+    <style>
+        /* Estilo del contenedor del carrusel */
+        .carousel {
+            position: relative;
+            width: 80%;
+            max-width: 800px;
+            margin: auto;
+            overflow: hidden;
+            border: 2px solid #d9a66c; /* Bordes dorados para un toque elegante */
+            border-radius: 20px; /* Esquinas redondeadas */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra suave para darle profundidad */
+        }
+
+        /* Imágenes dentro del carrusel */
+        .carousel-images {
+            display: flex;
+            animation: slide 12s infinite ease-in-out;
+        }
+
+        .carousel-images img {
+            width: 100%;
+            flex-shrink: 0;
+            border-radius: 15px; /* Bordes redondeados para las imágenes */
+        }
+
+        /* Animación de deslizamiento */
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            20% { transform: translateX(0); }
+            25% { transform: translateX(-100%); }
+            45% { transform: translateX(-100%); }
+            50% { transform: translateX(-200%); }
+            70% { transform: translateX(-200%); }
+            75% { transform: translateX(-300%); }
+            95% { transform: translateX(-300%); }
+            100% { transform: translateX(-400%); }
+        }
+
+        /* Título */
+        h1 {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            color: #d9a66c;
+            margin-top: 40px;
+            font-size: 2.5rem;
+        }
+    </style>
+</head>
+<body>
+
+  <h1>Carrusel de Imágenes</h1>
+    <div class="carousel">
+        <div class="carousel-images">
+            <img src="casa balnca.jpg" alt="Imagen 1">
+            <img src="cp2.jpg" alt="Imagen 2">
+            <img src="cnm.jpg" alt="Imagen 3">
+            <img src="cake2.jpg" alt="Imagen 4">
+            <img src=cake.jpg"" alt="Imagen 5">
+        </div>
+    </div>
+
+  
+    <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro - Casablanca</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff3e0; /* Color terracota claro */
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 40px;
+            color: #D17D57; /* Color terracota */
+        }
+
+        .form-container {
+            width: 60%;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-size: 1.1em;
+            color: #333;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"], select, input[type="radio"], input[type="checkbox"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1em;
+        }
+
+        input[type="radio"] {
+            width: auto;
+            margin-right: 10px;
+            display: inline-block;
+        }
+
+        .submit-btn {
+            background-color: #D17D57; /* Color terracota */
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.2em;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background-color: #9e6e4c;
+        }
+
+        .terms {
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        .terms a {
+            color: #D17D57;
+            text-decoration: none;
+        }
+
+        .terms a:hover {
+            text-decoration: underline;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Formulario de Registro - Casablanca</h1>
+
+    <div class="form-container">
+        <form id="registroForm">
+            <label for="nombre">Nombre completo:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre" required>
+
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="email" placeholder="Ingresa tu correo" required>
+
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" placeholder="Ingresa una contraseña" required>
+
+            <label for="genero">Género:</label>
+            <select id="genero" name="genero" required>
+                <option value="">Selecciona</option>
+                <option value="masculino">Masculino</option>
+                <option value="femenino">Femenino</option>
+                <option value="otro">Otro</option>
+            </select>
+
+            <label for="edad">Rango de edad:</label><br>
+            <input type="radio" id="18-25" name="edad" value="18-25">
+            <label for="18-25">18-25</label><br>
+            <input type="radio" id="26-35" name="edad" value="26-35">
+            <label for="26-35">26-35</label><br>
+            <input type="radio" id="36-50" name="edad" value="36-50">
+            <label for="36-50">36-50</label><br><br>
+
+            <div class="terms">
+                <input type="checkbox" id="terminos" name="terminos" required>
+                <label for="terminos">Acepto los <a href="javascript:void(0);" id="openModal">términos y condiciones</a></label><br><br>
+            </div>
+
+            <input type="submit" value="Registrarse" class="submit-btn">
+        </form>
+    </div>
+
+    <!-- Modal de Términos y Condiciones -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Términos y Condiciones</h2>
+            <p><strong>1. Introducción:</strong> Estos términos y condiciones describen las reglas y regulaciones para el uso del sitio web de Casablanca.</p>
+            <p><strong>2. Uso de los Servicios:</strong> Al utilizar los servicios de Casablanca, aceptas cumplir con estos términos.</p>
+            <p><strong>3. Política de Privacidad:</strong> Nos comprometemos a proteger tu privacidad. No compartiremos tu información personal con terceros sin tu consentimiento.</p>
+        </div>
+    </div>
+
+    <script>
+        // Obtener elementos
+        const modal = document.getElementById("myModal");
+        const openModalBtn = document.getElementById("openModal");
+        const closeModalBtn = document.getElementById("closeModal");
+
+        // Abrir el modal
+        openModalBtn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // Cerrar el modal
+        closeModalBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Cerrar el modal si se hace clic fuera de él
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Mostrar mensaje de agradecimiento después del registro
+        document.getElementById("registroForm").onsubmit = function(event) {
+            event.preventDefault(); // Evitar que el formulario se envíe
+            alert("¡Gracias por registrarte!"); // Muestra un mensaje de confirmación
+        }
+    </script>
+
+</body>
+</html>
